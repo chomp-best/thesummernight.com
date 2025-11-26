@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Checkout - THE SUMMER NIGHT</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Anton&family=Outfit:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+    <!-- Configuración de Tema -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        'anton': ['Anton', 'sans-serif'],
+                        'outfit': ['Outfit', 'sans-serif'],
+                    },
+                    colors: {
+                        'neon-pink': '#ff00de',
+                        'neon-blue': '#00ffff',
+                        'dark-bg': '#050505',
+                    },
+                    boxShadow: {
+                        'neon': '0 0 20px rgba(255, 0, 222, 0.3)',
+                        'neon-hover': '0 0 30px rgba(255, 0, 222, 0.5)',
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* Fondo Animado Sutil */
+        body {
+            background-color: #050505;
+            background-image: 
+                radial-gradient(circle at 15% 50%, rgba(76, 29, 149, 0.15) 0%, transparent 50%),
+                radial-gradient(circle at 85% 30%, rgba(255, 0, 222, 0.15) 0%, transparent 50%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0;
+            overflow-x: hidden;
+        }
+
+        /* Efecto Glassmorphism */
+        .glass-card {
+            background: rgba(20, 20, 20, 0.7);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+        }
+
+        /* Animación de entrada suave */
+        .fade-in-up {
+            animation: fadeInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+            opacity: 0;
+            transform: translateY(20px);
+        }
+
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Selección de texto personalizada */
+        ::selection {
+            background: #ff00de;
+            color: white;
+        }
+    </style>
+</head>
+<body class="font-outfit text-white p-4 antialiased">
+
+    <!-- Contenedor Principal -->
+    <main class="w-full max-w-[380px] relative fade-in-up">
+        
+        <!-- Decoración de fondo (Glows) -->
+        <div class="absolute -top-20 -left-20 w-64 h-64 bg-purple-600 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-blob"></div>
+        <div class="absolute -bottom-20 -right-20 w-64 h-64 bg-pink-600 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-blob animation-delay-2000"></div>
+
+        <!-- Tarjeta de Checkout -->
+        <div class="glass-card rounded-3xl overflow-hidden relative z-10">
+            
+            <!-- Barra superior decorativa -->
+            <div class="h-1.5 w-full bg-gradient-to-r from-purple-500 via-pink-500 to-yellow-500"></div>
+
+            <div class="p-6 pt-8 flex flex-col items-center">
+                
+                <!-- Título / Logo -->
+                <div class="text-center mb-8 relative">
+                    <h2 class="font-anton text-4xl leading-none tracking-wide text-transparent bg-clip-text bg-gradient-to-b from-white to-gray-400">
+                        THE SUMMER
+                    </h2>
+                    <h1 class="font-anton text-5xl leading-none tracking-wide text-neon-pink drop-shadow-[0_2px_10px_rgba(255,0,222,0.5)]">
+                        NIGHT
+                    </h1>
+                    <div class="mt-2 inline-block px-3 py-1 rounded-full border border-white/10 bg-white/5 backdrop-blur-md">
+                        <p class="text-[10px] font-bold tracking-[0.2em] text-gray-300 uppercase">Official Checkout</p>
+                    </div>
+                </div>
+
+                <!-- Detalle del Ticket -->
+                <div class="w-full bg-gradient-to-b from-white/10 to-transparent border border-white/5 rounded-2xl p-5 mb-6 relative group transition-all duration-300 hover:border-white/20">
+                    <div class="flex justify-between items-start mb-4">
+                        <div>
+                            <p class="text-xs text-gray-400 uppercase tracking-wider mb-1">Ticket</p>
+                            <p class="font-bold text-lg text-white">Entrada General</p>
+                        </div>
+                        <div class="text-right">
+                            <p class="text-xs text-gray-400 uppercase tracking-wider mb-1">Cant.</p>
+                            <p class="font-bold text-lg text-white">1</p>
+                        </div>
+                    </div>
+                    
+                    <div class="h-px w-full bg-white/10 my-3"></div>
+                    
+                    <div class="flex justify-between items-end">
+                        <span class="text-gray-300 text-sm font-light">Total a transferir</span>
+                        <span class="text-3xl font-anton text-yellow-400 tracking-wide">$8.000</span>
+                    </div>
+                </div>
+
+                <!-- Sección de Pago (Alias) -->
+                <div class="w-full space-y-3 mb-8">
+                    <p class="text-xs text-center text-gray-500 uppercase tracking-widest">Datos de cuenta (Mercado Pago)</p>
+                    
+                    <div class="relative group">
+                        <!-- Input visual del Alias -->
+                        <div class="flex flex-col items-center justify-center p-4 bg-neutral-900/80 border border-white/10 rounded-xl transition-colors duration-300 group-hover:border-pink-500/50">
+                            <span class="text-[10px] text-pink-500 font-bold tracking-widest uppercase mb-1">Alias</span>
+                            <p id="alias-value" class="text-xl font-bold text-white tracking-wider select-all font-mono">summer.night.ticket</p>
+                        </div>
+                    </div>
+
+                    <!-- Botón Copiar -->
+                    <button onclick="copiarAlias()" id="btn-copy" class="w-full py-3.5 px-4 rounded-xl border border-white/20 hover:bg-white/10 active:scale-[0.98] transition-all duration-200 flex items-center justify-center gap-2 group">
+                        <svg id="icon-copy" class="w-5 h-5 text-gray-300 group-hover:text-white transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path>
+                        </svg>
+                        <span id="text-copy" class="font-semibold text-sm tracking-wide uppercase text-gray-200 group-hover:text-white">Copiar Alias</span>
+                    </button>
+                </div>
+
+                <!-- Botón de WhatsApp (CTA Principal) -->
+                <a href="https://wa.me/5493794816696?text=Hola!%20Ya%20hice%20el%20pago%20de%20la%20entrada%20para%20THE%20SUMMER%20NIGHT.%20Adjunto%20el%20comprobante." 
+                   target="_blank"
+                   class="w-full bg-gradient-to-r from-pink-600 to-purple-700 hover:from-pink-500 hover:to-purple-600 text-white p-4 rounded-full font-bold uppercase tracking-widest text-sm shadow-neon hover:shadow-neon-hover transform hover:-translate-y-1 transition-all duration-300 flex items-center justify-center gap-3 group relative overflow-hidden">
+                    
+                    <!-- Brillo animado sobre el botón -->
+                    <div class="absolute top-0 -left-full w-full h-full bg-gradient-to-r from-transparent via-white/20 to-transparent transform group-hover:translate-x-[200%] transition-transform duration-700 ease-in-out"></div>
+                    
+                    <span>Enviar Comprobante</span>
+                    <svg class="w-5 h-5 fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                        <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/>
+                    </svg>
+                </a>
+                
+                <p class="mt-4 text-[10px] text-gray-500">Recibirás tu QR de acceso tras enviar el comprobante.</p>
+
+            </div>
+        </div>
+
+        <!-- Créditos sutiles -->
+        <div class="text-center mt-6 opacity-40 hover:opacity-100 transition-opacity duration-300">
+            <p class="text-[10px] uppercase tracking-[0.2em]">Secured by The Summer Night</p>
+        </div>
+
+    </main>
+
+    <script>
+        function copiarAlias() {
+            const aliasText = document.getElementById('alias-value').innerText;
+            const btn = document.getElementById('btn-copy');
+            const btnText = document.getElementById('text-copy');
+            const icon = document.getElementById('icon-copy');
+
+            // Función interna para actualizar la UI
+            const updateUI = () => {
+                // Guardar estado original si es necesario (opcional)
+                
+                // Cambiar estilos a "Éxito"
+                btn.classList.remove('border-white/20', 'hover:bg-white/10');
+                btn.classList.add('bg-green-500/10', 'border-green-500/50');
+                
+                // Cambiar texto e icono
+                btnText.innerText = "¡Alias Copiado!";
+                btnText.classList.remove('text-gray-200');
+                btnText.classList.add('text-green-400');
+                
+                icon.innerHTML = '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>';
+                icon.classList.remove('text-gray-300');
+                icon.classList.add('text-green-400');
+
+                // Revertir después de 2 segundos
+                setTimeout(() => {
+                    btn.classList.add('border-white/20', 'hover:bg-white/10');
+                    btn.classList.remove('bg-green-500/10', 'border-green-500/50');
+                    
+                    btnText.innerText = "Copiar Alias";
+                    btnText.classList.add('text-gray-200');
+                    btnText.classList.remove('text-green-400');
+
+                    icon.innerHTML = '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path>';
+                    icon.classList.add('text-gray-300');
+                    icon.classList.remove('text-green-400');
+                }, 2000);
+            };
+
+            // Solución para compatibilidad con iframes y permisos estrictos:
+            // Usamos un elemento textarea temporal y execCommand, que suele funcionar
+            // mejor en entornos donde la API asíncrona de portapapeles está bloqueada.
+            
+            const textArea = document.createElement("textarea");
+            textArea.value = aliasText;
+            
+            // Asegurar que el elemento no sea visible en la pantalla
+            textArea.style.position = "fixed";
+            textArea.style.left = "-9999px";
+            textArea.style.top = "0";
+            textArea.setAttribute("readonly", ""); // Evitar teclado en móviles
+            document.body.appendChild(textArea);
+            
+            textArea.focus();
+            textArea.select();
+            
+            try {
+                const successful = document.execCommand('copy');
+                if (successful) {
+                    updateUI();
+                } else {
+                    throw new Error('Comando de copia fallido');
+                }
+            } catch (err) {
+                console.warn('Falló la copia estándar, intentando método alternativo...', err);
+                // Último recurso: intentar prompt o alert
+                alert('Por favor copia el alias manualmente: ' + aliasText);
+            } finally {
+                document.body.removeChild(textArea);
+            }
+        }
+    </script>
+</body>
+</html>
