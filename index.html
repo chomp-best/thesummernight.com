@@ -1,675 +1,335 @@
 <!DOCTYPE html>
-
 <html lang="es">
-
 <head>
-
     <meta charset="UTF-8">
-
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
     <title>THE SUMMER NIGHT - Invitación</title>
-
     <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Anton&family=Outfit:wght@400;700&display=swap" rel="stylesheet">
-
     
-
     <style>
-
         body {
-
             margin: 0;
-
             padding: 0;
-
             background-color: #1a1a1a;
-
             font-family: 'Outfit', sans-serif;
-
             display: flex;
-
             justify-content: center;
-
             align-items: center;
-
             min-height: 100vh;
-
             overflow-x: hidden;
-
         }
-
-
 
         /* --- PANTALLA DE INICIO (Overlay para activar sonido) --- */
-
         #start-overlay {
-
             position: fixed;
-
             top: 0;
-
             left: 0;
-
             width: 100%;
-
             height: 100%;
-
             background: rgba(0,0,0,0.85);
-
             backdrop-filter: blur(10px);
-
             z-index: 9999;
-
             display: flex;
-
             flex-direction: column;
-
             justify-content: center;
-
             align-items: center;
-
             color: white;
-
             transition: opacity 0.5s ease;
-
         }
-
-
 
         .start-btn {
-
             background: #ff00de;
-
             border: none;
-
             padding: 20px 40px;
-
             font-size: 1.5rem;
-
             color: white;
-
             font-family: 'Anton', sans-serif;
-
             border-radius: 50px;
-
             cursor: pointer;
-
             box-shadow: 0 0 20px #ff00de;
-
             animation: pulse 1.5s infinite;
-
             text-transform: uppercase;
-
             letter-spacing: 2px;
-
         }
-
-
 
         @keyframes pulse {
-
             0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(255, 0, 222, 0.7); }
-
             70% { transform: scale(1.1); box-shadow: 0 0 0 20px rgba(255, 0, 222, 0); }
-
             100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(255, 0, 222, 0); }
-
         }
-
-
 
         /* --- ESTILOS DEL FLYER --- */
-
         .flyer-container {
-
             position: relative;
-
             width: 100%;
-
             max-width: 400px;
-
             height: 85vh;
-
             max-height: 800px;
-
             background-color: #000; 
-
             border-radius: 20px;
-
             box-shadow: 0 0 30px rgba(0, 255, 255, 0.4);
-
             overflow: hidden;
-
             text-align: center;
-
             color: white;
-
             display: flex;
-
             flex-direction: column;
-
             justify-content: space-between;
-
         }
-
-
 
         /* Estilos para el video de fondo */
-
         .bg-video {
-
             position: absolute;
-
             top: 0;
-
             left: 0;
-
             width: 100%;
-
             height: 100%;
-
             object-fit: cover; 
-
             z-index: 0;
-
         }
-
-
 
         .overlay {
-
             position: absolute;
-
             top: 0;
-
             left: 0;
-
             width: 100%;
-
             height: 100%;
-
             background: linear-gradient(to bottom, rgba(0,0,50,0.4), transparent, rgba(0,0,50,0.6));
-
             z-index: 1; 
-
         }
-
-
 
         .content {
-
             position: relative;
-
             z-index: 10; 
-
             padding: 20px;
-
             padding-top: 15px; 
-
             display: flex;
-
             flex-direction: column;
-
             height: 100%;
-
             justify-content: flex-start;
-
             align-items: center;
-
         }
-
-
 
         h2.subtitle {
-
             font-family: 'Pacifico', cursive;
-
             font-size: 1.8rem;
-
             color: #ffd700;
-
             text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
-
             margin-bottom: 10px;
-
             transform: rotate(-5deg);
-
         }
-
-
 
         h1.main-title {
-
             font-family: 'Anton', sans-serif;
-
             font-size: 4.5rem;
-
             line-height: 0.9;
-
             margin: 0;
-
             text-transform: uppercase;
-
             background: linear-gradient(to bottom, #ff69b4, #ff1493, #c71585);
-
             -webkit-background-clip: text;
-
             -webkit-text-fill-color: transparent;
-
             filter: drop-shadow(4px 4px 0px #c71585) drop-shadow(6px 6px 2px rgba(0,0,0,0.4));
-
             letter-spacing: 2px;
-
             transform: rotate(-3deg);
-
         }
-
-
 
         .info-details {
-
             margin-top: 15px;
-
             font-size: 1.3rem;
-
             text-transform: uppercase;
-
             font-weight: 700;
-
             letter-spacing: 1px;
-
             text-shadow: 2px 2px 4px rgba(0,0,0,0.8);
-
         }
-
-
 
         .info-details p {
-
             margin: 5px 0;
-
         }
-
-
 
         .highlight-pink {
-
             color: #ff69b4;
-
         }
-
-
 
         .cta-button {
-
             background: linear-gradient(to right, #ff1493, #ff69b4);
-
             color: white;
-
             text-decoration: none;
-
             padding: 12px 30px;
-
             border-radius: 50px;
-
             font-weight: bold;
-
             text-transform: uppercase;
-
             letter-spacing: 1px;
-
             display: inline-block;
-
             margin-top: auto; 
-
             margin-bottom: 20px;
-
             box-shadow: 0 5px 15px rgba(255, 20, 147, 0.5);
-
             transition: transform 0.2s;
-
             text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
-
         }
-
-
 
         .cta-button:hover {
-
             transform: scale(1.05);
-
         }
-
-
 
         .organizers-footer {
-
             margin-bottom: 15px;
-
             width: 100%;
-
             border-top: 1px solid rgba(255,255,255,0.2); 
-
             padding-top: 15px;
-
         }
-
-
 
         .org-title {
-
             font-size: 0.7rem;
-
             text-transform: uppercase;
-
             letter-spacing: 2px;
-
             margin-bottom: 10px;
-
             opacity: 0.9;
-
             text-shadow: 1px 1px 2px rgba(0,0,0,0.8);
-
         }
-
-
 
         .org-links {
-
             display: flex;
-
             justify-content: center;
-
             gap: 15px;
-
             flex-wrap: wrap;
-
         }
-
-
 
         .ig-link {
-
             color: white;
-
             text-decoration: none;
-
             display: flex;
-
             align-items: center;
-
             gap: 5px;
-
             font-weight: 600;
-
             font-size: 0.85rem;
-
             transition: opacity 0.3s;
-
             text-shadow: 1px 1px 3px rgba(0,0,0,1);
-
         }
-
-
 
         .ig-link:hover { opacity: 0.8; }
-
         .ig-icon { width: 16px; height: 16px; fill: white; }
-
         .verified-icon { width: 12px; height: 12px; fill: #3897f0; }
 
-
-
         .sponsors-bar {
-
             width: 100%;
-
             text-align: center;
-
             color: rgba(255, 255, 255, 0.65);
-
             font-weight: 700;
-
             text-transform: uppercase;
-
             font-size: 0.8rem;
-
             letter-spacing: 1px;
-
             padding-bottom: 10px;
-
             margin-top: 10px;
-
         }
-
-
 
         .sponsor-x {
-
             margin: 0 8px;
-
             font-size: 0.7em;
-
             opacity: 0.6;
-
             vertical-align: middle;
-
         }
-
-
 
         /* --- CRÉDITOS DEL DISEÑADOR --- */
-
         .designer-credit {
-
             position: absolute;
-
             bottom: 10px;
-
             right: 15px;
-
             font-size: 0.6rem;
-
             color: rgba(255, 255, 255, 0.8);
-
             font-family: 'Outfit', sans-serif;
-
             z-index: 100;
-
             letter-spacing: 1px;
-
             text-transform: uppercase;
-
             font-weight: 400;
-
             text-shadow: 1px 1px 2px rgba(0,0,0,1);
-
             pointer-events: none;
-
         }
-
     </style>
-
 </head>
-
 <body>
 
-
-
     <div id="start-overlay">
-
         <p style="margin-bottom: 20px; font-size: 1.2rem;">¿Estás listo?</p>
-
         <button class="start-btn" onclick="startParty()">🔊 ENTRAR A LA FIESTA</button>
-
     </div>
 
-
-
     <audio id="music-track" loop>
-
         <source src="musica.mp3" type="audio/mp3">
-
     </audio>
-
     <audio id="ambience-track" loop>
-
         <source src="https://cdn.pixabay.com/download/audio/2021/08/09/audio_03d6d53348.mp3?filename=sea-and-seagull-wave-5932.mp3" type="audio/mp3">
-
     </audio>
-
-
 
     <div class="flyer-container">
-
         
-
         <video class="bg-video" autoplay loop muted playsinline>
-
             <source src="fondo.mp4" type="video/mp4">
-
         </video>
-
-
 
         <div class="overlay"></div>
 
-
-
         <div class="content">
-
             <h2 class="subtitle">Indoor Session</h2>
-
             <h1 class="main-title">THE SUMMER<br>NIGHT</h1>
 
-
-
             <div class="info-details">
-
                 <p>UBICACIÓN PRIVADA</p>
-
-                <p><span class="highlight-pink">SÁBADO 13 DIC</span> • 23:59 HS</p>
-
+                <!-- Fecha actualizada a 20 DIC -->
+                <p><span class="highlight-pink">SÁBADO 20 DIC</span> • 23:59 HS</p>
             </div>
-
             
-
- <a href="checkout.html" class="cta-button">
-
-   🎟️ CONSEGUÍ TU ENTRADA
-
-</a>
+            <a href="checkout.html" class="cta-button">
+               🎟️ CONSEGUÍ TU ENTRADA
+            </a>
 
             <div class="organizers-footer">
-
                 <div class="org-title">Organizado por</div>
-
                 <div class="org-links">
-
                     
-
                     <a href="https://instagram.com/eliseoooook" target="_blank" class="ig-link">
-
                         <svg class="ig-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
-
                         Eliseo
-
                         <svg class="verified-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
-
                     </a>
-
-
 
                     <a href="https://www.instagram.com/ezeemed22/" target="_blank" class="ig-link">
-
                         <svg class="ig-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
-
                         Ezequiel
-
                         <svg class="verified-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
-
                     </a>
-
-
-
-                    <a href="https://instagram.com/_prici770" target="_blank" class="ig-link">
-
-                        <svg class="ig-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
-
-                        Priscila
-
-                    </a>
-
-                    
 
                 </div>
-
             </div>
-
-
 
             <div class="sponsors-bar">
-
                 QUILMES <span class="sponsor-x">x</span> CORONA <span class="sponsor-x">x</span> BRAHMA <span class="sponsor-x">x</span> SMIRNOFF
-
             </div>
-
-
 
         </div>
 
-
-
         <div class="designer-credit">Designed by Eliseo</div>
-
-
 
     </div>
 
-
-
     <script>
-
         function startParty() {
-
             var music = document.getElementById('music-track');
-
             var ambience = document.getElementById('ambience-track');
-
             
-
             music.volume = 0.5;
-
             ambience.volume = 0.8;
 
-
-
             music.play();
-
             ambience.play();
 
-
-
             var overlay = document.getElementById('start-overlay');
-
             overlay.style.opacity = '0';
-
             
-
             setTimeout(function() {
-
                 overlay.style.display = 'none';
-
             }, 500);
-
         }
-
     </script>
 
-
-
 </body>
-
-
 
 </html>
